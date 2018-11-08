@@ -19,8 +19,27 @@ public class FooBar {
         }
     }
 
+    // [aleung] Would normally clarify with customer what to do when value divisible by both 3 and 5.
+    // For sake of time, simply concatenate the two.
+    /**
+     * Returns string representation of an integer.
+     * 
+     * @param value The integer representation.
+     * @return The string representation 
+     * (or "Foo" if divisible by 3, "Bar" if divisible by 5, "FooBar" if divisible by both.
+     */
     String fooBar(int value) {
-        // TODO: Insert your code here
-        return null;
+        String valueString = "";
+        if (value % 3 == 0) {
+            valueString += "Foo";
+        }
+        if (value % 5 == 0) {
+            valueString += "Bar";
+        }
+        if (!valueString.isEmpty())
+        {
+            return valueString;
+        }
+        return String.valueOf(value);
     }
 }
