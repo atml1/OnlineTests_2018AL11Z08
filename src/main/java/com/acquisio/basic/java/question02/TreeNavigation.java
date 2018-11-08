@@ -4,7 +4,7 @@ package com.acquisio.basic.java.question02;
  * QUESTION 2: TreeNode
  * Using the tree structure define at
  * http://en.wikipedia.org/wiki/File:Binary_tree.svg,
- * add the code necessary to optain the following output.
+ * add the code necessary to obtain the following output.
  * ..2
  * ....7
  * ......2
@@ -30,6 +30,17 @@ public class TreeNavigation {
         Node n3 = new Node("9", new Node("4"));
         Node n4 = new Node("5", null, n3);
         Node n = new Node("2", n2, n4);
-        // TODO: Implement code here
+        
+        printSubTree("..", n);
+    }
+    
+    private void printSubTree(String prefix, Node node) {
+        if (node == null) return;
+        
+        System.out.println(prefix + node.name);
+        
+        for (Node n : node.children) {
+            printSubTree(prefix + "..", n);
+        }
     }
 }
