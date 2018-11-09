@@ -20,11 +20,10 @@ public class Debugging {
     }
 
     Integer[] removeEvenNumbers(Integer ... values) {
-        // TODO: Fix code here.
 
         List<Integer> integers = new ArrayList<>(Arrays.asList(values));
 
-        for (Integer i : integers) {
+        for (Integer i : new ArrayList<Integer>(integers)) { // copy the list since we can't edit while iterating
             if (i % 2 == 0) { // remove even numbers
                 integers.remove(i);
             }
