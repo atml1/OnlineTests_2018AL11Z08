@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.io.File;
-import java.nio.file.Files;
 
 import static org.junit.Assert.*;
 
@@ -19,9 +18,10 @@ public class LambdasTest {
         instance.convertCarts(input, output);
 
         assertTrue(output.exists());
+        @SuppressWarnings("deprecation")
         String[] result = FileUtils.readFileToString(output).split("\n");
         assertEquals(3, result.length);
-        assertEquals(5, result[0].split(","));
+        assertEquals(5, result[0].split(",").length);
     }
 
 }
