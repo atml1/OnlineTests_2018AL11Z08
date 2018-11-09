@@ -41,16 +41,17 @@ public class Extraction {
 
     private void printNumberOfEmployeesPerProject() throws SQLException {
         try (Connection conn = H2DBUtil.getConnection()) {
-            // Start : For consultation only, can be removed
-//            H2DBUtil.displayTableRows(conn, "projects");
-//            H2DBUtil.displayTableRows(conn, "departments");
-//            H2DBUtil.displayTableRows(conn, "employees");
-//            H2DBUtil.displayTableRows(conn, "employees_projects");
-            // End : For consultation only, can be removed
-
-            // TODO: Insert query here
-            // See requirement in this class javadoc
-            String query = "select 1 as dummyValue from dual";
+            
+            String query = 
+                    "SELECT first_name AS FirstName, last_name AS LastName, departments.name AS DepartmentName "
+                  + "FROM (SELECT * "
+                  + "      FROM employees "
+                  + "      WHERE id NOT IN "
+                  + "          (SELECT employee_id "
+                  + "           FROM employees_projects "
+                  + "           GROUP BY employee_id)) AS UnassignedEmployees "
+                  + "INNER JOIN departments "
+                  + "ON departments.id = UnassignedEmployees.department_id";
             
             ResultSet resultSet = conn.createStatement().executeQuery(query);
             H2DBUtil.displayResultSet(resultSet);
